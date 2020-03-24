@@ -8,8 +8,8 @@ import {
 } from './app.ts';
 
 const _getAssertMsg = (
-    { target }: AlertCriteria,
-    { op, currPrice, prevPrice }: AlertEvalMsg,
+    { op, target }: AlertCriteria,
+    { currPrice, prevPrice }: AlertEvalMsg,
 ) => {
     return `op=${op} prevPrice=${prevPrice} target=${target} currPrice=${currPrice}`;
 };
@@ -29,9 +29,9 @@ const testPriceSpec = (
         const { op, target, currPrice, prevPrice } = scenario;
 
         // arrange
-        const criteria: AlertCriteria = { target };
+        const criteria: AlertCriteria = { op, target };
         const spec = new PriceSpec(criteria);
-        const candidate: AlertEvalMsg = { op, prevPrice, currPrice };
+        const candidate: AlertEvalMsg = { prevPrice, currPrice };
 
         // act
         const result = spec.isSatisfiedBy(candidate);

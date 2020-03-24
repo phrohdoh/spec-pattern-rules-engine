@@ -3,13 +3,13 @@
 import * as rulesEngine from './rules_engine.ts';
 
 export interface AlertEvalMsg {
-    op: CriteriaOp;
     currPrice: number;
     prevPrice: number;
 };
 
-/** The user wants to be alerted when an asset's value is relative to `target` in a specified-elsewhere way */
+/** Alert the user when an asset's value satisfies criteria defined by said user */
 export interface AlertCriteria {
+    op: CriteriaOp;
     target: number;
 };
 
@@ -28,8 +28,8 @@ export class PriceSpec implements rulesEngine.ISpec<AlertEvalMsg> {
         this._alertCriteria = alertCriteria;
     }
 
-    isSatisfiedBy({ op, prevPrice, currPrice }: AlertEvalMsg): boolean {
-        const { target } = this._alertCriteria;
+    isSatisfiedBy({ prevPrice, currPrice }: AlertEvalMsg): boolean {
+        const { target, op } = this._alertCriteria;
 
         switch (op) {
             case CriteriaOp.GreaterThan:
