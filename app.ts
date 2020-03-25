@@ -39,7 +39,7 @@ export class PriceSpec implements rulesEngine.ISpec<AlertEvalMsg> {
             case CriteriaOp.Equals:
                 return prevPrice !== target && target === currPrice;
             case CriteriaOp.LessThanOrEqualTo:
-                return prevPrice >   target && target >=  currPrice
+                return prevPrice >   target && target >=  currPrice;
             case CriteriaOp.LessThan:
                 return prevPrice >   target && target >   currPrice;
             default:
