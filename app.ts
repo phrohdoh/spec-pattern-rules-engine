@@ -76,7 +76,11 @@ async function main() {
 
       const spec /* pretend we get this from the db */ = new PriceSpec({
         op: randomEnum(CriteriaOp),
-        target: 28,
+        target: (() => {
+          const min = 10;
+          const max = 30;
+          return Math.floor(Math.random() * max + min);
+        })(),
       });
 
       return onNewPrice(ctx, spec);
