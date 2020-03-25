@@ -28,7 +28,7 @@ export class PriceSpec implements rulesEngine.ISpec<AlertEvalMsg> {
         this._alertCriteria = alertCriteria;
     }
 
-    isSatisfiedBy({ prevPrice, currPrice }: AlertEvalMsg): boolean {
+    public isSatisfiedBy({ prevPrice, currPrice }: AlertEvalMsg): boolean {
         const { target, op } = this._alertCriteria;
 
         switch (op) {
